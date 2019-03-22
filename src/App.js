@@ -44,6 +44,7 @@ function App(props) {
       </Tooltip>
       <CardActions>
         <Button
+          color="secondary"
           variant="contained"
           onClick={setNo === 0 ? undefined : doClick}
         >
