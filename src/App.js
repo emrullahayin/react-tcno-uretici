@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const styles = theme => ({
   button: {
@@ -33,19 +34,18 @@ function App(props) {
   const { classes } = props;
   const [no, setNo] = useState();
   useEffect(() => {
-    if (!no) {
-      setNo(doClick);
-    }
+    !no && setNo(doClick);
   });
   function doClick() {
     var a = "" + (0 | 9e8 * Math.random() + 1e8),
-      b = a.split("").map(function (t) { return 0 | t }),
+      b = a.split("").map((t) => 0 | t),
       c = b[0] + b[2] + b[4] + b[6] + b[8],
       d = b[1] + b[3] + b[5] + b[7],
       e = (7 * c - d) % 10,
       number = a + ("" + e) + ("" + (d + c + e) % 10)
     setNo(number);
   }
+  const [copied, setCopied] = useState(false);
   return (
     <Card className={classes.card}>
       <CardActions className={classes.CardActions}>
