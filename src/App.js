@@ -27,10 +27,18 @@ const styles = theme => ({
 
 function App(props) {
   const { classes } = props;
-  const [no, setNo] = useState(0);
+  const [no, setNo] = useState();
+
   function doClick() {
-    setNo(event => event + 2);
+    var a = "" + (0 | 9e8 * Math.random() + 1e8),
+      b = a.split("").map(function (t) { return 0 | t }),
+      c = b[0] + b[2] + b[4] + b[6] + b[8],
+      d = b[1] + b[3] + b[5] + b[7],
+      e = (7 * c - d) % 10,
+      number = a + ("" + e) + ("" + (d + c + e) % 10)
+    setNo(number);
   }
+
   return (
     <Card className={classes.card}>
       <Tooltip title="Tıkla-Kopyala" placement="right-start">
@@ -46,7 +54,7 @@ function App(props) {
         <Button
           color="secondary"
           variant="contained"
-          onClick={setNo === 0 ? undefined : doClick}
+          onClick={doClick}
         >
           TC No Üret
         </Button>
