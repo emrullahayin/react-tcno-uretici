@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -32,7 +32,11 @@ const styles = theme => ({
 function App(props) {
   const { classes } = props;
   const [no, setNo] = useState();
-
+  useEffect(() => {
+    if (!no) {
+      setNo(doClick);
+    }
+  });
   function doClick() {
     var a = "" + (0 | 9e8 * Math.random() + 1e8),
       b = a.split("").map(function (t) { return 0 | t }),
