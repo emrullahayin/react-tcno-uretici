@@ -37,7 +37,7 @@ function App(props) {
     !no && setNo(doClick);
   });
   function doClick() {
-    var a = "" + (0 | 9e8 * Math.random() + 1e8),
+    let a = "" + (0 | 9e8 * Math.random() + 1e8),
       b = a.split("").map((t) => 0 | t),
       c = b[0] + b[2] + b[4] + b[6] + b[8],
       d = b[1] + b[3] + b[5] + b[7],
@@ -46,6 +46,13 @@ function App(props) {
     setNo(number);
   }
   const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    setCopied(true)
+  });
+  function onCopy() {
+    copied && console.log('copied');
+  };
+
   return (
     <Card className={classes.card}>
       <CardActions className={classes.CardActions}>
@@ -58,15 +65,17 @@ function App(props) {
         </Button>
       </CardActions>
       {no !== undefined &&
-        <Tooltip title="Tıkla-Kopyala" placement="right-start">
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {no}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Tooltip>
+        <CopyToClipboard onCopy={onCopy} text={no}>
+          <Tooltip title="Tıkla-Kopyala" placement="right-start">
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {no}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Tooltip>
+        </CopyToClipboard>
       }
     </Card>
   );
