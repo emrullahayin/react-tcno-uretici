@@ -19,6 +19,10 @@ const styles = theme => ({
   card: {
     maxWidth: 345,
     margin: 'auto',
+    textAlign: 'center',
+  },
+  CardActions: {
+    justifyContent: 'center',
   },
   media: {
     height: 140,
@@ -38,19 +42,10 @@ function App(props) {
       number = a + ("" + e) + ("" + (d + c + e) % 10)
     setNo(number);
   }
-
+  console.log(no)
   return (
     <Card className={classes.card}>
-      <Tooltip title="Tıkla-Kopyala" placement="right-start">
-        <CardActionArea>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {no}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Tooltip>
-      <CardActions>
+      <CardActions className={classes.CardActions}>
         <Button
           color="secondary"
           variant="contained"
@@ -59,6 +54,17 @@ function App(props) {
           TC No Üret
         </Button>
       </CardActions>
+      {no !== undefined &&
+        <Tooltip title="Tıkla-Kopyala" placement="right-start">
+          <CardActionArea>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {no}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Tooltip>
+      }
     </Card>
   );
 }
