@@ -42,7 +42,6 @@ function App(props) {
       number = a + ("" + e) + ("" + (d + c + e) % 10)
     setNo(number);
   }
-  console.log(no)
   return (
     <Card className={classes.card}>
       <CardActions className={classes.CardActions}>
