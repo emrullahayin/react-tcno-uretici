@@ -68,7 +68,7 @@ function App(props) {
       </CardActions>
       {no !== undefined &&
         <CopyToClipboard onCopy={onCopy} text={no}>
-          <Tooltip title="Tıkla-Kopyala" placement="bottom-center">
+          <Tooltip title="Tıkla-Kopyala" placement="bottom">
             <CardActionArea>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
