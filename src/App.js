@@ -21,7 +21,7 @@ const styles = theme => ({
   },
   card: {
     maxWidth: 345,
-    margin: 'auto',
+    margin: '50px auto',
     textAlign: 'center',
   },
   CardActions: {
