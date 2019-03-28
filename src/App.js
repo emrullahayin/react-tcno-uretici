@@ -11,6 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   button: {
@@ -53,33 +56,59 @@ function App(props) {
   });
   function onCopy() {
     copied && console.log('copied');
+    setOpenTooltip(true)
   };
-
+  const [openTooltip, setOpenTooltip] = useState(false);
+  function handleClose() {
+    setOpenTooltip(false)
+  };
   return (
-    <Card className={classes.card}>
-      <CardActions className={classes.CardActions}>
-        <Button
-          color="secondary"
-          variant="contained"
-          onClick={doClick}
-        >
-          TC No Üret
+    <div>
+      <Card className={classes.card}>
+        <CardActions className={classes.CardActions}>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={doClick}
+          >
+            TC No Üret
         </Button>
-      </CardActions>
-      {no !== undefined &&
-        <CopyToClipboard onCopy={onCopy} text={no}>
-          <Tooltip title="Tıkla-Kopyala" placement="bottom">
-            <CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {no}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Tooltip>
-        </CopyToClipboard>
-      }
-    </Card>
+        </CardActions>
+        {no !== undefined &&
+          <CopyToClipboard onCopy={onCopy} text={no}>
+            <Tooltip title="Tıkla-Kopyala" placement="bottom">
+              <CardActionArea>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {no}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Tooltip>
+          </CopyToClipboard>
+        }
+      </Card>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+        open={openTooltip}
+        onClose={handleClose}
+        autoHideDuration={500}
+        ContentProps={{
+          'aria-describedby': 'messageCopy',
+        }}
+        message={<span id="messageCopy">Kopyalandı</span>}
+        action={[
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>,
+        ]}
+      />
+    </div>
   );
 }
 
