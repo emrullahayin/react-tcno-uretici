@@ -92,7 +92,7 @@ function App(props) {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
         open={openTooltip}
         onClose={handleClose}
-        autoHideDuration={500}
+        autoHideDuration={300}
         ContentProps={{
           'aria-describedby': 'messageCopy',
         }}
