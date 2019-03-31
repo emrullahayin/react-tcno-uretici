@@ -12,8 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   button: {
@@ -27,12 +25,16 @@ const styles = theme => ({
     margin: '50px auto',
     textAlign: 'center',
   },
-  CardActions: {
+  cardActions: {
+    padding: 16,
     justifyContent: 'center',
   },
   media: {
     height: 140,
   },
+  typography: {
+    marginBottom: 0,
+  }
 });
 
 function App(props) {
@@ -65,8 +67,9 @@ function App(props) {
   return (
     <div>
       <Card className={classes.card}>
-        <CardActions className={classes.CardActions}>
+        <CardActions className={classes.cardActions}>
           <Button
+            size="large"
             color="secondary"
             variant="contained"
             onClick={doClick}
@@ -76,10 +79,10 @@ function App(props) {
         </CardActions>
         {no !== undefined &&
           <CopyToClipboard onCopy={onCopy} text={no}>
-            <Tooltip title="Tıkla-Kopyala" placement="bottom">
+            <Tooltip  title="Tıkla-Kopyala" placement="bottom">
               <CardActionArea>
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
                     {no}
                   </Typography>
                 </CardContent>
@@ -89,24 +92,14 @@ function App(props) {
         }
       </Card>
       <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left', }}
         open={openTooltip}
         onClose={handleClose}
-        autoHideDuration={300}
+        autoHideDuration={500}
         ContentProps={{
-          'aria-describedby': 'messageCopy',
+          'aria-describedby': 'messageCopyAlert',
         }}
-        message={<span id="messageCopy">Kopyalandı</span>}
-        action={[
-          <IconButton
-            key="close"
-            aria-label="Close"
-            color="inherit"
-            onClick={handleClose}
-          >
-            <CloseIcon />
-          </IconButton>,
-        ]}
+        message={<span id="messageCopyAlert">Kopyalandı</span>}
       />
     </div>
   );
