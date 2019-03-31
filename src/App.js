@@ -57,8 +57,7 @@ function App(props) {
     setCopied(true)
   });
   function onCopy() {
-    copied && console.log('copied');
-    setOpenTooltip(true)
+    copied && setOpenTooltip(true);
   };
   const [openTooltip, setOpenTooltip] = useState(false);
   function handleClose() {
